@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Student Onboarding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "student_id",
+    "student_name",
+    "age",
+    "has_learning_difficulty",
+    "support_required",
+    "parent_email"
+  ],
+  "properties": {
+    "student_id": {
+      "type": "string",
+      "pattern": "^STU-",
+      "maxLength": 32
+    },
+    "student_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 25
+    },
+    "has_learning_difficulty": {
+      "type": "boolean"
+    },
+    "support_required": {
+      "type": "string",
+      "enum": ["reading", "math", "speech", "none"]
+    },
+    "parent_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    }
+  }
+}

@@ -1,0 +1,8 @@
+Source Field,Source Type,Required,Validation Rule,Destination Field,Destination Type,Invalid Data Action
+student_id,string,Yes,Must start with STU- and be at most 32 characters,student_id,STRING,Reject request
+student_name,string,Yes,Between 1 and 120 characters,student_name,STRING,Reject request
+age,integer,Yes,Must be between 1 and 25,age,INTEGER,Reject request
+has_learning_difficulty,boolean,Yes,Must be true or false,has_learning_difficulty,BOOLEAN,Reject request
+support_required,string,Yes,Must be reading math speech or none,support_required,STRING,Reject request
+parent_email,string,Yes,Must be a valid email address,parent_email,STRING,Reject request
+created_at,timestamp,Generated,Generated at ingestion,created_at,TIMESTAMP,Reject record
