@@ -1,3 +1,4 @@
+#checkov:skip=CKV_GCP_81:Customer-supplied encryption keys require a separately managed key lifecycle; Google-managed encryption is used for this billing-free demonstration.
 resource "google_bigquery_dataset" "staged" {
   dataset_id                 = "student_staged_${var.environment}"
   location                   = var.region
@@ -9,9 +10,12 @@ resource "google_bigquery_dataset" "staged" {
   }
 }
 
+#checkov:skip=CKV_GCP_80:Customer-supplied encryption keys require a separately managed key lifecycle; Google-managed encryption is used for this billing-free demonstration.
 resource "google_bigquery_table" "student_onboarding" {
   dataset_id = google_bigquery_dataset.staged.dataset_id
   table_id   = "student_onboarding"
+
+  deletion_protection = true
 
   schema = jsonencode([
     {

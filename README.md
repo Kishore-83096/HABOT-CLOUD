@@ -242,6 +242,7 @@ Terraform is located in the `terraform/` directory and is ready for a configured
 
 - Uniform bucket-level access
 - Public access prevention
+- GCS access logging to a dedicated security-log bucket
 - Object versioning
 - Lifecycle cleanup rule
 - Environment and data-zone labels
@@ -250,8 +251,13 @@ Terraform is located in the `terraform/` directory and is ready for a configured
 
 - Explicit student onboarding schema
 - Day partitioning on `created_at`
+- Deletion protection enabled
 - Environment and data-zone labels
 - Row-level access policy for support-related records
+
+Google-managed encryption is used in this billing-free demonstration. Customer-supplied
+encryption keys require a separately managed key lifecycle and are documented as a
+production follow-up rather than being represented by an unsafe hardcoded key.
 
 ### IAM
 
