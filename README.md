@@ -298,6 +298,27 @@ For the hiring-project evidence, capture:
 - The local API response and D0/D1 output files
 - Terraform validation output
 
+### Required pipeline screenshots
+
+The failing-pipeline screenshot should show:
+
+- The repository name and workflow name
+- A red `Failure` status
+- The failed job or step name, such as Checkov, Ruff, pytest, or secret scanning
+- The error annotation or failed command
+- The commit or branch that triggered the run
+
+The passing-pipeline screenshot should show:
+
+- The repository name and workflow name
+- A green `Success` status
+- The completed quality-gate job
+- Passing Terraform, pytest, Ruff, and security-scan steps
+- The commit or branch that triggered the run
+
+Do not capture browser tabs, personal tokens, passwords, service-account keys, or
+other private information in the screenshots.
+
 Use fake test values only. Never create or commit a real secret for the failure demo.
 
 ## Schema and Data Mapping
@@ -325,7 +346,9 @@ The invalid-data policy is to reject the request with HTTP 400 before the record
 | Evidence | Link |
 |---|---|
 | Presentation | [PPT link to be added]() |
-| GitHub Actions run | `[Link to be added]` |
+| GitHub Actions page | [Open GitHub Actions](https://github.com/Kishore-83096/HABOT-CLOUD/actions) |
+| Passing workflow run | [Open successful run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34690525093) |
+| Failing workflow run | [Open failed run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34690289869) |
 | Passing pipeline screenshot | `[Link to be added]` |
 | Failing pipeline screenshot | `[Link to be added]` |
 
