@@ -4,11 +4,11 @@
 
 | Field | Details |
 |---|---|
-| Name | `[Your full name]` |
-| GitHub repository | `[Repository link to be added]` |
-| Email | `[Your email address]` |
-| Phone | `[Your phone number]` |
-| Presentation | [PPT link to be added]() |
+| Name | JAY KISHORE SIRIPURAPU |
+| GitHub repository | [HABOT-CLOUD](https://github.com/Kishore-83096/HABOT-CLOUD) |
+| Email | kishore.siripurapu1484@gmail.com |
+| Phone | 7032057690 |
+| Presentation | [Open presentation](https://drive.google.com/file/d/1H3VHNLfmDvP93UFyuYOqj2fp_0_VJLJp/view?usp=drive_link) |
 
 ## Project Overview
 
@@ -298,26 +298,9 @@ For the project evidence, capture:
 - The local API response and D0/D1 output files
 - Terraform validation output
 
-### Required pipeline screenshots
-
-The failing-pipeline screenshot should show:
-
-- The repository name and workflow name
-- A red `Failure` status
-- The failed job or step name, such as Checkov, Ruff, pytest, or secret scanning
-- The error annotation or failed command
-- The commit or branch that triggered the run
-
-The passing-pipeline screenshot should show:
-
-- The repository name and workflow name
-- A green `Success` status
-- The completed quality-gate job
-- Passing Terraform, pytest, Ruff, and security-scan steps
-- The commit or branch that triggered the run
-
-Do not capture browser tabs, personal tokens, passwords, service-account keys, or
-other private information in the screenshots.
+The direct workflow links below provide the passing and failing pipeline evidence.
+Separate pipeline screenshots are not required because each link opens the full
+GitHub Actions run, including its status, commit, job, and step results.
 
 Use fake test values only. Never create or commit a real secret for the failure demo.
 
@@ -345,13 +328,10 @@ The invalid-data policy is to reject the request with HTTP 400 before the record
 
 | Evidence | Link |
 |---|---|
-| Presentation | [PPT link to be added]() |
+| Presentation | [Open presentation](https://drive.google.com/file/d/1H3VHNLfmDvP93UFyuYOqj2fp_0_VJLJp/view?usp=drive_link) |
 | GitHub Actions page | [Open GitHub Actions](https://github.com/Kishore-83096/HABOT-CLOUD/actions) |
-| Passing workflow run | [Open successful run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34690525093) |
+| Passing workflow run | [Open successful run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34706446582) |
 | Failing workflow run | [Open failed run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34690289869) |
-| Passing pipeline screenshot | `[Link to be added]` |
-| Failing pipeline screenshot | `[Link to be added]` |
 
-## License
 
-This repository is a project submission and does not include a separate license unless one is added by the project owner.
+
