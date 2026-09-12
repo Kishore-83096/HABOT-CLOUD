@@ -82,7 +82,7 @@ habot-project/
 - A GitHub repository for the quality-gate workflow
 - GCP billing is not required for local development or Terraform validation
 
-### Hiring-project requirements covered
+### Project requirements covered
 
 - Terraform configuration for GCS and BigQuery
 - GCS uniform bucket-level access and public-access prevention
@@ -291,7 +291,7 @@ The workflow at `.github/workflows/quality-gate.yml` runs on pushes and pull req
 
 No security or quality step uses `continue-on-error: true`. A failed check prevents later delivery steps from being treated as successful.
 
-For the hiring-project evidence, capture:
+For the project evidence, capture:
 
 - A failed workflow caused by a deliberately invalid test change or security issue
 - A corrected workflow with all checks passing
@@ -354,4 +354,4 @@ The invalid-data policy is to reject the request with HTTP 400 before the record
 
 ## License
 
-This repository is a hiring-project submission and does not include a separate license unless one is added by the candidate.
+This repository is a project submission and does not include a separate license unless one is added by the project owner.
