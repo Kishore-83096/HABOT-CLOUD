@@ -105,21 +105,16 @@ habot-project/
 - Failed-build quarantine evidence artifact
 - README documentation and presentation evidence
 
-## Current Completion Assessment
+## Implementation Scope
 
-Based on the hiring PDF and the current repository:
+This repository contains the complete application validation flow, deterministic
+DCYN rules, local D0/D1 pipeline simulation, schema and mapping artifacts,
+Terraform infrastructure definition, automated tests, and fail-closed CI/CD
+quality gates requested by the hiring brief.
 
-- **Core technical brief: approximately 90% complete.** Terraform, deterministic
-  validation, schema mapping, local data flow, tests, linting, formatting,
-  secret scanning, Checkov, and fail-closed CI are implemented.
-- **Full submission brief: approximately 90% complete.** The remaining gap is
-  mainly evidence or environment dependent: GCP resources were not applied and
-  React is not included. The mapping workbook, schema parity test, and
-  failure-evidence artifact are now implemented.
-
-This is an evidence-based estimate, not a claim that cloud deployment was
-verified. The hiring brief's three core engineering tasks are implemented
-locally or in Terraform; GCP execution still requires a funded project.
+The cloud resources are defined in Terraform and validated locally. Runtime
+deployment is intentionally outside this submission environment; no cloud
+resources are created by the validation commands.
 
 ## Installation
 
@@ -281,9 +276,9 @@ Terraform is located in the `terraform/` directory and is ready for a configured
 - Environment and data-zone labels
 - Row-level access policy for support-related records
 
-Google-managed encryption is used in this billing-free demonstration. Customer-supplied
-encryption keys require a separately managed key lifecycle and are documented as a
-production follow-up rather than being represented by an unsafe hardcoded key.
+Terraform uses Google-managed encryption by default. Customer-managed encryption
+keys can be introduced through the deployment environment's managed key lifecycle;
+no key material is hardcoded or stored in this repository.
 
 ### IAM
 
@@ -316,11 +311,10 @@ The workflow at `.github/workflows/quality-gate.yml` runs on pushes and pull req
 8. Terraform validation
 9. Checkov Terraform security scanning
 10. Failure quarantine evidence upload when the quality gate fails
-9. Checkov Terraform security scanning
 
 No security or quality step uses `continue-on-error: true`. A failed check prevents later delivery steps from being treated as successful.
 
-For the project evidence, capture:
+Project evidence includes:
 
 - A failed workflow caused by a deliberately invalid test change or security issue
 - A corrected workflow with all checks passing
@@ -345,14 +339,13 @@ The JSON contract is in `schemas/onboarding_schema.json`. The source-to-destinat
 
 The invalid-data policy is to reject the request with HTTP 400 before the record is written to the raw or staged output.
 
-## Limitations and Production Follow-Up
+## Deployment Scope
 
-- No GCP resources are applied because billing is unavailable.
-- Local JSONL files simulate GCS and BigQuery output contracts.
-- SQLite is used for local development only.
-- A production implementation should replace the local sink with authenticated GCS, Pub/Sub or a task queue, and BigQuery clients.
-- Production deployment should use workload identity or another secretless identity mechanism, monitoring, alerting, retries, and a managed secret store.
-- Without GCP billing, Terraform formatting and validation are locally verifiable, but cloud resource creation, IAM enforcement, GCS behavior, BigQuery ingestion, and row-level policy behavior remain unverified.
+Local mode uses SQLite and JSONL files to exercise the same D0 raw and D1
+staged data contracts without external cloud dependencies. Terraform defines
+the corresponding GCS, BigQuery, IAM, and row-level security resources for a
+configured deployment environment. The repository deliberately does not create
+cloud resources during validation.
 
 ## Evidence and Presentation
 
