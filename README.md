@@ -8,7 +8,7 @@
 | GitHub repository | [HABOT-CLOUD](https://github.com/Kishore-83096/HABOT-CLOUD) |
 | Email | kishore.siripurapu1484@gmail.com |
 | Phone | 7032057690 |
-| Presentation | [Open presentation](https://drive.google.com/file/d/18SYBFIu6mx-FNxxvna2jaC5sh8L5jGwG/view?usp=sharing) |
+| Presentation | [Open presentation](https://docs.google.com/presentation/d/1msTwvF6T1LR-IyizTL9fQa-JRJnVcRUuxA6t5LBt_hM/edit?usp=sharing) |
 
 ## Project Overview
 
@@ -351,7 +351,7 @@ cloud resources during validation.
 
 | Evidence | Link |
 |---|---|
-| Presentation | [Open presentation](https://drive.google.com/file/d/1H3VHNLfmDvP93UFyuYOqj2fp_0_VJLJp/view?usp=drive_link) |
+| Presentation | [Open presentation](https://docs.google.com/presentation/d/1msTwvF6T1LR-IyizTL9fQa-JRJnVcRUuxA6t5LBt_hM/edit?usp=sharing) |
 | GitHub Actions page | [Open GitHub Actions](https://github.com/Kishore-83096/HABOT-CLOUD/actions) |
 | Passing workflow run | [Open successful run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34706446582) |
 | Failing workflow run | [Open failed run](https://github.com/Kishore-83096/HABOT-CLOUD/actions/runs/34690289869) |
