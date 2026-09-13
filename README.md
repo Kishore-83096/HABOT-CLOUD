@@ -8,7 +8,7 @@
 | GitHub repository | [HABOT-CLOUD](https://github.com/Kishore-83096/HABOT-CLOUD) |
 | Email | kishore.siripurapu1484@gmail.com |
 | Phone | 7032057690 |
-| Presentation | [Open presentation](https://drive.google.com/file/d/1H3VHNLfmDvP93UFyuYOqj2fp_0_VJLJp/view?usp=drive_link) |
+| Presentation | [Open presentation](https://drive.google.com/file/d/18SYBFIu6mx-FNxxvna2jaC5sh8L5jGwG/view?usp=sharing) |
 
 ## Project Overview
 
@@ -44,6 +44,7 @@ Django API -> validation -> GCS D0 raw landing -> BigQuery D1 staged dataset
 habot-project/
 |-- app/
 |   |-- models.py                 Student onboarding database model
+|   |-- dcyn.py                   Deterministic binary validation rules
 |   |-- serializers.py            Request validation rules
 |   |-- views.py                  POST API endpoint
 |   |-- local_pipeline.py         Billing-free local data sinks
@@ -56,7 +57,10 @@ habot-project/
 |   `-- wsgi.py                   WSGI application entry point
 |-- schemas/
 |   |-- onboarding_schema.json    JSON data contract
-|   `-- schema_mapping.csv        Source-to-destination mapping
+|   |-- schema_mapping.csv        Source-to-destination mapping
+|   `-- schema_mapping.xlsx       Wrapped-text spreadsheet mapping
+|-- tools/
+|   `-- create_mapping_workbook.py Reproducible spreadsheet generator
 |-- terraform/
 |   |-- storage.tf                D0 GCS bucket
 |   |-- bigquery.tf               D1 dataset, table, and row policy
@@ -90,11 +94,32 @@ habot-project/
 - Dedicated service account and least-privilege IAM
 - BigQuery row-level access policy
 - Django REST Framework schema and validation
+- Explicit DCYN binary decision library for deterministic validation
 - Source-to-destination data mapping
+- JSON schema and serializer consistency test
+- Wrapped-text Excel mapping artifact
 - Automated tests and linting
+- Python formatting verification
 - Secret scanning and Terraform security scanning
 - Fail-closed CI quality gate
+- Failed-build quarantine evidence artifact
 - README documentation and presentation evidence
+
+## Current Completion Assessment
+
+Based on the hiring PDF and the current repository:
+
+- **Core technical brief: approximately 90% complete.** Terraform, deterministic
+  validation, schema mapping, local data flow, tests, linting, formatting,
+  secret scanning, Checkov, and fail-closed CI are implemented.
+- **Full submission brief: approximately 90% complete.** The remaining gap is
+  mainly evidence or environment dependent: GCP resources were not applied and
+  React is not included. The mapping workbook, schema parity test, and
+  failure-evidence artifact are now implemented.
+
+This is an evidence-based estimate, not a claim that cloud deployment was
+verified. The hiring brief's three core engineering tasks are implemented
+locally or in Terraform; GCP execution still requires a funded project.
 
 ## Installation
 
@@ -132,6 +157,7 @@ Run these commands before pushing to GitHub:
 python manage.py check
 python -m pytest
 ruff check app config manage.py
+ruff format --check app config manage.py
 terraform -chdir=terraform fmt -check -recursive
 terraform -chdir=terraform init -backend=false
 terraform -chdir=terraform validate
@@ -141,7 +167,7 @@ Expected results:
 
 ```text
 Django system check: no issues
-Tests: 9 passed
+Tests: 12 passed
 Ruff: All checks passed
 Terraform: Success! The configuration is valid.
 ```
@@ -283,11 +309,14 @@ The workflow at `.github/workflows/quality-gate.yml` runs on pushes and pull req
 1. Gitleaks secret scanning
 2. Python dependency installation
 3. Ruff linting
-4. Pytest execution
-5. Terraform formatting check
-6. Terraform initialization
-7. Terraform validation
-8. Checkov Terraform security scanning
+4. Ruff Python formatting check
+5. Pytest execution
+6. Terraform formatting check
+7. Terraform initialization
+8. Terraform validation
+9. Checkov Terraform security scanning
+10. Failure quarantine evidence upload when the quality gate fails
+9. Checkov Terraform security scanning
 
 No security or quality step uses `continue-on-error: true`. A failed check prevents later delivery steps from being treated as successful.
 
@@ -306,7 +335,7 @@ Use fake test values only. Never create or commit a real secret for the failure 
 
 ## Schema and Data Mapping
 
-The JSON contract is in `schemas/onboarding_schema.json`. The source-to-destination mapping is in `schemas/schema_mapping.csv`. The mapping documents:
+The JSON contract is in `schemas/onboarding_schema.json`. The source-to-destination mapping is in `schemas/schema_mapping.csv` and the wrapped-text workbook `schemas/schema_mapping.xlsx`. The mapping documents:
 
 - Source field and source type
 - Required status
@@ -323,6 +352,7 @@ The invalid-data policy is to reject the request with HTTP 400 before the record
 - SQLite is used for local development only.
 - A production implementation should replace the local sink with authenticated GCS, Pub/Sub or a task queue, and BigQuery clients.
 - Production deployment should use workload identity or another secretless identity mechanism, monitoring, alerting, retries, and a managed secret store.
+- Without GCP billing, Terraform formatting and validation are locally verifiable, but cloud resource creation, IAM enforcement, GCS behavior, BigQuery ingestion, and row-level policy behavior remain unverified.
 
 ## Evidence and Presentation
 

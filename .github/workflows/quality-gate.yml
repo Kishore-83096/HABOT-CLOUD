@@ -32,6 +32,9 @@ jobs:
       - name: Run Ruff
         run: ruff check app config manage.py
 
+      - name: Check Python formatting
+        run: ruff format --check app config manage.py
+
       - name: Run tests
         run: python -m pytest
 
@@ -55,3 +58,20 @@ jobs:
         with:
           directory: terraform
           soft_fail: false
+
+  quarantine-on-failure:
+    if: ${{ always() && needs.quality-gate.result == 'failure' }}
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record failed build
+        run: |
+          mkdir -p quarantine
+          printf 'Build blocked by quality-gate\nRun: %s\nCommit: %s\n' \
+            "$GITHUB_RUN_ID" "$GITHUB_SHA" > quarantine/build-status.txt
+
+      - name: Upload quarantined build evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: quarantined-build-${{ github.run_id }}
+          path: quarantine/build-status.txt
